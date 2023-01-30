@@ -3,6 +3,7 @@ version: '3.4'
 services:
   web:
     build: .
+#    read_only: true
     environment:
       - VIRTUAL_HOST=${VIRTUAL_HOST:-mywp.localhost.utexas.edu}
       - WORDPRESS_DB_HOST=db
@@ -24,6 +25,9 @@ services:
       - "${HTTP_EXPOSED_PORT:-8088}:80"
     volumes:
       - wpuploads:/var/www/html/wp-content/uploads
+#      - wpvarrun:/var/run
+#      - wprun:/run
+#      - wptmp:/tmp
   db:
     image: mysql:8
     environment:
@@ -43,3 +47,6 @@ services:
 volumes:
   dbdata:
   wpuploads:
+  wpvarrun:
+  wprun:
+  wptmp:
