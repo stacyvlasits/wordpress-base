@@ -1,0 +1,45 @@
+version: '3.4'
+
+services:
+  web:
+    build: .
+    environment:
+      - VIRTUAL_HOST=${VIRTUAL_HOST:-mywp.localhost.utexas.edu}
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=wordpress
+      - WORDPRESS_DB_NAME=wordpress
+      - WORDPRESS_DEBUG=1
+    #      - WORDPRESS_AUTH_KEY=
+    #      - WORDPRESS_SECURE_AUTH_KEY=
+    #      - WORDPRESS_LOGGED_IN_KEY=
+    #      - WORDPRESS_NONCE_KEY=
+    #      - WORDPRESS_AUTH_SALT=
+    #      - WORDPRESS_SECURE_AUTH_SALT=
+    #      - WORDPRESS_LOGGED_IN_SALT=
+    #      - WORDPRESS_NONCE_SALT=
+    links:
+      - "db:db"
+    ports:
+      - "${HTTP_EXPOSED_PORT:-8088}:80"
+    volumes:
+      - wpuploads:/var/www/html/wp-content/uploads
+  db:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: 'wordpress'
+      MYSQL_USER: 'wordpress'
+      MYSQL_PASSWORD: 'wordpress'
+      MYSQL_ROOT_PASSWORD: 'wordpress'
+    ports:
+      - '${DB_EXPOSED_PORT:-13306}:3306'
+    expose:
+      - '3306'
+    volumes:
+      - dbdata:/var/lib/mysql
+# FIXME: also a backup container, maybe something like https://github.com/angelo-v/wordpress-backup
+# FIXME: maybe phpmyadmin as well?
+
+volumes:
+  dbdata:
+  wpuploads:

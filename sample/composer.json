@@ -1,0 +1,42 @@
+{
+  "name"        : "laits/wp-sample",
+  "description" : "Sample project for WordPress stack via Composer",
+  "type"        : "project",
+  "repositories": [
+    {
+      "type": "composer",
+      "url" : "https://wpackagist.org",
+      "only": [
+        "wpackagist-plugin/*",
+        "wpackagist-theme/*"
+      ]
+    }
+  ],
+  "config"      : {
+    "vendor-dir": "wp-content/vendor",
+    "allow-plugins": {
+      "johnpbloch/wordpress-core-installer": true,
+      "composer/installers": true
+    }
+  },
+  "require"     : {
+    "johnpbloch/wordpress"                        : ">=6.0",
+    "rarst/fragment-cache"                        : "^1.3",
+    "rarst/update-blocker"                        : "^1.1",
+    "wpackagist-plugin/wordpress-seo"             : "^19.13",
+    "wpackagist-theme/twentytwentythree"          : "1.0"
+  },
+  "require-dev" : {
+    "rarst/laps"                                  : "^3.3.7",
+    "rarst/toolbar-theme-switcher"                : "^1.5",
+    "wpackagist-plugin/a-fresher-cache"           : "*",
+    "wpackagist-plugin/core-control"              : "*",
+    "wpackagist-plugin/monster-widget"            : "*",
+    "wpackagist-plugin/theme-check"               : "*",
+    "wpackagist-plugin/user-switching"            : "*",
+    "wpackagist-plugin/wcm-user-language-switcher": "*"
+  },
+  "extra"       : {
+    "wordpress-install-dir": "wp"
+  }
+}
