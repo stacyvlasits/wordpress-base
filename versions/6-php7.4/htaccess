@@ -1,0 +1,8 @@
+<IfModule mod_rewrite.c>
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} !^/wp-content/
+RewriteRule ^(.*)$ wp/$1 [L]
+
+</IfModule>

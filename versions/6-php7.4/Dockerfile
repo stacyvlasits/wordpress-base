@@ -1,9 +1,5 @@
 FROM php:7.4-apache
 
-# Copy apache's conf file and change the webroot
-COPY apache-000-default.conf /etc/apache2/sites-available/000-default.conf
-
-
 # Set up opcache for PHP performance
 RUN set -eux; \
 	docker-php-ext-enable opcache; \
@@ -100,6 +96,7 @@ RUN docker-php-ext-install simplexml ldap bcmath exif gd intl mysqli zip
 RUN pecl install memcached
 
 # Copy in config files
+COPY htaccess /var/www/html/.htaccess
 COPY wp-config-docker.php /var/www/html
 COPY entrypoint.sh /usr/local/bin/
 

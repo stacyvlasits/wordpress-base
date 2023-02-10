@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . '/../wp-content/vendor/autoload.php';
+
 /**
  * The base configuration for WordPress
  *
@@ -126,11 +128,13 @@ if ($configExtra = getenv_docker('WORDPRESS_CONFIG_EXTRA', '')) {
 /* That's all, stop editing! Happy publishing. */
 
 /** Absolute path to the WordPress directory. */
-if ( ! defined( 'ABSPATH' ) ) {
-    define( 'ABSPATH', __DIR__ . '/' );
-}
+define('ABSPATH', '/var/www/html/wp/');
+define('WP_CONTENT_DIR', '/var/www/html/wp-content');
+#if ( ! defined( 'ABSPATH' ) ) {
+#    define( 'ABSPATH', __DIR__ . '/' );
+#}
 
-define('WP_CONTENT_DIR', ABSPATH . '../wp-content');
+#define('WP_CONTENT_DIR', ABSPATH . '../wp-content');
 
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';
