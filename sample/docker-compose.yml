@@ -16,7 +16,9 @@ services:
       - WORDPRESS_DB_NAME=wordpress
       - WORDPRESS_DEBUG=1
       - WORDPRESS_DEBUG_LOG=1
-      - WORDPRESS_DEBG_DISPLAY=0
+      - WORDPRESS_DEBUG_DISPLAY=0
+      - WORDPRESS_SITE_URL="http://localhost:8088"  # Fixes an issue where site url needed to be reset after install
+    #
     #      - WORDPRESS_AUTH_KEY=
     #      - WORDPRESS_SECURE_AUTH_KEY=
     #      - WORDPRESS_LOGGED_IN_KEY=
