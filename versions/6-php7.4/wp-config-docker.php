@@ -132,6 +132,9 @@ if ($configExtra = getenv_docker('WORDPRESS_CONFIG_EXTRA', '')) {
 /** Absolute path to the WordPress directory. */
 define('ABSPATH', '/var/www/html/wp/');
 define('WP_CONTENT_DIR', '/var/www/html/wp-content');
+/** Enables Setting site url in ENV to fix issue for local development */
+define( 'WP_SITEURL', !!getenv_docker('WORDPRESS_SITE_URL', false) );
+
 #if ( ! defined( 'ABSPATH' ) ) {
 #    define( 'ABSPATH', __DIR__ . '/' );
 #}
